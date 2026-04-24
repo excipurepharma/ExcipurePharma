@@ -15,10 +15,16 @@
         .bg-ex-green { background-color: var(--primary-green); }
         .text-ex-blue { color: var(--primary-blue); }
         .bg-ex-blue { background-color: var(--primary-blue); }
-        .border-ex-blue { border-color: var(--primary-blue); }
         
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .main-logo-img {
+            max-height: 160px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.08));
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-gray-800 font-sans">
@@ -26,179 +32,119 @@
     <!-- Navigation -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-leaf text-ex-green text-3xl"></i>
-                <span class="text-2xl font-bold text-ex-blue">Excipure <span class="text-ex-green">Pharma</span></span>
+            <div class="flex items-center min-w-[200px]">
+                <img src="logo.png" alt="Excipure Pharma" class="main-logo-img" 
+                     onerror="this.style.display='none'; document.getElementById('text-fallback').style.display='flex';">
+                <div id="text-fallback" class="hidden flex-col">
+                    <span class="text-2xl font-black text-ex-blue leading-none">EXCIPURE</span>
+                    <span class="text-xl font-bold text-ex-green leading-none tracking-[0.2em]">PHARMA</span>
+                </div>
             </div>
-            <div class="space-x-6 font-semibold uppercase text-xs tracking-widest hidden md:flex">
-                <a href="#excipients" class="hover:text-ex-green">Excipients</a>
-                <a href="#colours" class="hover:text-ex-green">Colours</a>
-                <a href="#specialty" class="hover:text-ex-green">Specialty</a>
-                <a href="#contact" class="bg-ex-blue text-white px-4 py-2 rounded shadow-md hover:bg-opacity-90">Contact</a>
+            
+            <!-- Fixed Navigation Tabs -->
+            <div class="flex items-center space-x-6 font-bold uppercase text-xs tracking-widest text-ex-blue">
+                <a href="#excipients" class="hidden md:block hover:text-ex-green transition">Excipients</a>
+                <a href="#colours" class="hidden md:block hover:text-ex-green transition">Colours</a>
+                <a href="#specialty" class="hidden md:block hover:text-ex-green transition">Specialty</a>
+                <a href="#contact" class="bg-ex-blue text-white px-5 py-2 rounded-full shadow-md hover:bg-opacity-90 transition">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="bg-white py-16 border-b border-gray-100">
+    <header class="bg-white py-16 border-b border-gray-100 relative">
+        <!-- GSTIN: Bigger Font and Corner Positioned -->
+        <div class="absolute top-4 right-8 text-sm md:text-base font-black text-gray-400 tracking-wider">
+            GSTIN: <span class="text-ex-blue">36CIZPK7957H1Z8</span>
+        </div>
+
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl font-black text-ex-blue mb-4 uppercase tracking-tighter">Product Catalogue</h1>
+            <h1 class="text-4xl md:text-5xl font-black text-ex-blue mb-4 uppercase tracking-tighter">Product Catalogue</h1>
+            <div class="w-24 h-1.5 bg-ex-green mx-auto mb-8 rounded-full"></div>
             <p class="text-gray-500 max-w-2xl mx-auto italic text-lg border-l-4 border-ex-green pl-4">
                 "Quality Excipients | Reliable Supplies | Stronger Partnerships"
             </p>
         </div>
     </header>
 
-    <!-- 1. PHARMACEUTICAL EXCIPIENTS SECTION -->
+    <!-- 01. EXCIPIENTS SECTION -->
     <section id="excipients" class="py-20 container mx-auto px-6">
-        <div class="flex items-center space-x-4 mb-12">
-            <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2">01. PHARMACEUTICAL EXCIPIENTS</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="excipient-grid">
-            <!-- Populated via JavaScript -->
-        </div>
+        <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2 mb-12 uppercase inline-block">01. Pharmaceutical Excipients</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="excipient-grid"></div>
     </section>
 
-    <!-- 2. PHARMACEUTICAL COLOURS SECTION -->
+    <!-- 02. COLOURS SECTION -->
     <section id="colours" class="py-20 bg-slate-100">
         <div class="container mx-auto px-6">
-            <div class="flex items-center space-x-4 mb-12">
-                <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2 uppercase">02. Pharmaceutical Colours (IP/USP)</h2>
+            <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2 mb-12 uppercase inline-block">02. Pharmaceutical Colours (IP/USP)</h2>
+            
+            <div class="bg-white rounded-3xl shadow-xl p-10 mb-12 border-l-[12px] border-ex-blue grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div><span class="font-bold text-yellow-600 block mb-1">YELLOW:</span> Tartrazine, Sunset, Quinoline Yellow</div>
+                <div><span class="font-bold text-red-600 block mb-1">RED:</span> Allura Red, Carmoisine, Ponceau 4R</div>
+                <div><span class="font-bold text-blue-600 block mb-1">BLUE:</span> Brilliant Blue, Indigo Carmine</div>
+                <div><span class="font-bold text-green-600 block mb-1">GREEN:</span> Fast Green</div>
+                <div><span class="font-bold text-gray-700 block mb-1">IRON OXIDES:</span> Red, Yellow, Black</div>
+                <div><span class="font-bold text-purple-700 block mb-1">LAKES:</span> Various Aluminium Lakes</div>
             </div>
 
-            <!-- Summary Table style -->
-            <div class="bg-white rounded-xl shadow-lg p-8 mb-12 border-l-8 border-ex-blue">
-                <h3 class="text-xl font-bold mb-6 text-ex-blue">Standard Product Range</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-yellow-600">YELLOW: <span class="font-normal text-gray-600">Tartrazine, Sunset Yellow, Quinoline Yellow</span></li></ul>
-                    </div>
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-red-600">RED: <span class="font-normal text-gray-600">Allura Red, Carmoisine, Ponceau 4R</span></li></ul>
-                    </div>
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-blue-600">BLUE: <span class="font-normal text-gray-600">Brilliant Blue, Indigo Carmine</span></li></ul>
-                    </div>
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-green-600">GREEN: <span class="font-normal text-gray-600">Fast Green</span></li></ul>
-                    </div>
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-gray-700">IRON OXIDES: <span class="font-normal text-gray-600">Red, Yellow, Black</span></li></ul>
-                    </div>
-                    <div>
-                        <ul class="space-y-2 text-sm"><li class="font-bold text-purple-600">LAKES: <span class="font-normal text-gray-600">Tartrazine, Sunset, Allura Red, Brilliant Blue Lakes</span></li></ul>
-                    </div>
-                </div>
-                <div class="mt-6 pt-4 border-t text-sm font-bold"><span class="text-gray-500">BASE / OPACIFIER:</span> Titanium Dioxide</div>
-            </div>
-
-            <!-- Detailed Specifications -->
-            <h3 class="text-xl font-bold mb-6 text-ex-blue uppercase tracking-wider">Detailed Specifications</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="colour-details-grid">
-                <!-- Populated via JavaScript -->
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="colour-details-grid"></div>
         </div>
     </section>
 
-    <!-- 3. COSMETIC & SAP SECTION -->
+    <!-- 03. SPECIALTY SECTION -->
     <section id="specialty" class="py-20 container mx-auto px-6">
-        <div class="flex items-center space-x-4 mb-12">
-            <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2 uppercase">03. Specialty Products</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Aloe Vera -->
-            <div class="bg-white p-8 rounded-2xl shadow-md border-t-8 border-ex-green card-hover">
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mr-4 text-ex-green">
-                        <i class="fas fa-spa text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-black text-gray-800 uppercase">Aloe Vera</h3>
-                </div>
-                <p class="text-xs font-bold text-ex-green mb-2 tracking-widest uppercase">Cosmetic / Nutraceutical Grade</p>
-                <p class="font-bold text-lg text-ex-blue mb-4">Aloe Vera Gel Powder</p>
-                <div class="bg-slate-50 p-4 rounded-lg">
-                    <p class="text-sm font-bold text-gray-500 mb-1">APPLICATIONS:</p>
-                    <p class="text-gray-700">Cosmetic, Nutraceutical formulations</p>
-                </div>
+        <h2 class="text-3xl font-bold text-ex-blue border-b-4 border-ex-green pb-2 mb-12 uppercase inline-block">03. Specialty Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="bg-white p-10 rounded-3xl shadow-lg border-t-8 border-ex-green card-hover">
+                <h3 class="text-xl font-black text-gray-800 uppercase mb-4">Aloe Vera</h3>
+                <p class="font-bold text-xl text-ex-blue">Aloe Vera Gel Powder</p>
+                <p class="text-sm text-gray-500 mt-2 italic">Cosmetic / Nutraceutical Grade</p>
+                <p class="mt-4 text-gray-700 bg-slate-50 p-4 rounded-xl">Applications: Cosmetic & Nutraceutical formulations</p>
             </div>
-
-            <!-- SAP -->
-            <div class="bg-white p-8 rounded-2xl shadow-md border-t-8 border-ex-blue card-hover">
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mr-4 text-ex-blue">
-                        <i class="fas fa-atom text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-black text-gray-800 uppercase">Other Products</h3>
-                </div>
-                <p class="text-xs font-bold text-ex-blue mb-2 tracking-widest uppercase">Industrial Grade</p>
-                <p class="font-bold text-lg text-ex-blue mb-4">Bio-Based Super Absorbent Polymer (SAP)</p>
-                <div class="bg-slate-50 p-4 rounded-lg">
-                    <p class="text-sm font-bold text-gray-500 mb-1">APPLICATIONS:</p>
-                    <p class="text-gray-700 text-sm leading-relaxed">Agriculture | Diapers | Sanitary Pads | Ice Packs | Rubber | Construction</p>
-                </div>
+            <div class="bg-white p-10 rounded-3xl shadow-lg border-t-8 border-ex-blue card-hover">
+                <h3 class="text-xl font-black text-gray-800 uppercase mb-4">Industrial SAP</h3>
+                <p class="font-bold text-xl text-ex-blue">Bio-Based Polymer</p>
+                <p class="text-sm text-gray-500 mt-2 italic">Super Absorbent Polymer</p>
+                <p class="mt-4 text-gray-700 bg-slate-50 p-4 rounded-xl text-sm">Agriculture | Diapers | Sanitary Pads | Ice Packs | Rubber</p>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT US SECTION -->
-    <section id="contact" class="py-20 bg-slate-900 text-white">
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-slate-900 text-white">
         <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-2 uppercase tracking-widest">Contact Us</h2>
-                <div class="w-24 h-1 bg-ex-green mx-auto mb-16"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-20 text-left">
-                    <!-- Column 1 -->
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-phone-alt text-ex-green text-xl mt-1"></i>
-                            <div>
-                                <p class="text-gray-400 text-xs font-bold uppercase mb-1">Phone</p>
-                                <p class="text-xl font-semibold">9398453760</p>
-                                <p class="text-xl font-semibold">9966695800</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-envelope text-ex-green text-xl mt-1"></i>
-                            <div>
-                                <p class="text-gray-400 text-xs font-bold uppercase mb-1">Email</p>
-                                <p class="text-xl font-semibold">excipurepharma@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Column 2 -->
-                    <div class="space-y-8">
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-map-marker-alt text-ex-green text-xl mt-1"></i>
-                            <div>
-                                <p class="text-gray-400 text-xs font-bold uppercase mb-1">Location</p>
-                                <p class="text-xl font-semibold">Hyderabad, Telangana,<br>India</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <i class="fas fa-globe text-ex-green text-xl mt-1"></i>
-                            <div>
-                                <p class="text-gray-400 text-xs font-bold uppercase mb-1">Website</p>
-                                <a href="http://excipurepharma.com" class="text-2xl font-bold text-ex-green hover:underline">excipurepharma.com</a>
-                            </div>
-                        </div>
-                    </div>
+            <h2 class="text-4xl font-black mb-16 text-center uppercase tracking-[0.3em]">Contact Us</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <p class="text-ex-green font-bold text-xs uppercase mb-3 tracking-widest">Phone</p>
+                    <p class="font-bold text-lg">9398453760</p>
+                    <p class="font-bold text-lg">9966695800</p>
+                </div>
+                <div>
+                    <p class="text-ex-green font-bold text-xs uppercase mb-3 tracking-widest">Email</p>
+                    <p class="font-bold text-lg underline">excipurepharma@gmail.com</p>
+                </div>
+                <div>
+                    <p class="text-ex-green font-bold text-xs uppercase mb-3 tracking-widest">Location</p>
+                    <p class="font-bold text-lg">Hyderabad, Telangana, India</p>
+                </div>
+                <div>
+                    <p class="text-ex-green font-bold text-xs uppercase mb-3 tracking-widest">Web</p>
+                    <a href="http://excipurepharma.com" class="font-black text-2xl hover:text-ex-green transition">excipurepharma.com</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-6 text-center text-gray-600 text-xs uppercase tracking-widest">
+    <footer class="bg-black py-8 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.4em]">
         &copy; 2023 Excipure Pharma. All rights reserved.
     </footer>
 
     <script>
-        // Data for Category 1: Excipients
         const excipients = [
-            { id: "01", name: "MCC (Microcrystalline Cellulose)", grade: "IP/USP (MCC 102)", app: "Tablet binder / diluent", feat: "Excellent compressibility" },
+            { id: "01", name: "MCC (Microcrystalline Cellulose)", grade: "IP/USP", app: "Tablet binder / diluent", feat: "Excellent compressibility" },
             { id: "02", name: "Sodium Starch Glycolate", grade: "IP/USP Type A", app: "Disintegrant", feat: "Rapid swelling" },
-            { id: "03", name: "CMC (Carboxymethyl Cellulose)", grade: "IP (Low/Medium Viscosity)", app: "Suspending agent", feat: "Stability enhancer" },
+            { id: "03", name: "CMC (Carboxymethyl Cellulose)", grade: "IP", app: "Suspending agent", feat: "Stability enhancer" },
             { id: "04", name: "Crospovidone", grade: "XL-10 / XL-10A", app: "Super disintegrant", feat: "Fast disintegration" },
             { id: "05", name: "Povidone (PVP K-30)", grade: "IP/USP", app: "Binder", feat: "Strong binding" },
             { id: "06", name: "Colloidal Silicon Dioxide", grade: "IP/USP", app: "Glidant", feat: "Improves flow properties" },
@@ -212,56 +158,41 @@
             { id: "14", name: "Calcium Stearate", grade: "IP", app: "Lubricant / Stabilizer", feat: "Improves processing" }
         ];
 
-        // Data for Category 2: Colours
         const colourDetails = [
-            { id: "1", name: "Tartrazine (E102)", ci: "CI 19140", type: "Synthetic Azo Dye", sol: "Water Soluble", app: "Tablets, Capsules, Syrups", feat: "Bright lemon yellow, high stability" },
-            { id: "2", name: "Sunset Yellow FCF (E110)", ci: "CI 15985", type: "Synthetic Azo Dye", sol: "Water Soluble", app: "Tablets, Capsules, Nutraceuticals", feat: "Orange-yellow shade, heat stable" },
-            { id: "3", name: "Quinoline Yellow (E104)", ci: "CI 47005", type: "Synthetic Dye", sol: "Water Soluble", app: "Tablets, Coatings, Cosmetics", feat: "Greenish-yellow, high light stability" },
-            { id: "4", name: "Allura Red AC (E129)", ci: "CI 16035", type: "Synthetic Azo Dye", sol: "Water Soluble", app: "Tablets, Capsules, Syrups", feat: "Bright red shade, excellent uniformity" },
-            { id: "5", name: "Carmoisine (E122)", ci: "CI 14720", type: "Synthetic Azo Dye", sol: "Water Soluble", app: "Oral liquids, Tablets", feat: "Pink to red shade, good solubility" },
-            { id: "6", name: "Ponceau 4R (E124)", ci: "CI 16255", type: "Synthetic Azo Dye", sol: "Water Soluble", app: "Tablets, Syrups, Capsules", feat: "Strong red shade, good dispersion" },
-            { id: "7", name: "Brilliant Blue FCF (E133)", ci: "CI 42090", type: "Synthetic Dye", sol: "Water Soluble", app: "Tablets, Capsules, Oral liquids", feat: "Bright blue shade, excellent stability" },
-            { id: "8", name: "Indigo Carmine (E132)", ci: "CI 73015", type: "Synthetic Dye", sol: "Water Soluble", app: "Tablets, Diagnostics, Capsules", feat: "Deep blue shade, good pH stability" },
-            { id: "9", name: "Fast Green FCF (E143)", ci: "CI 42053", type: "Synthetic Dye", sol: "Water Soluble", app: "Tablets, Capsules, Syrups", feat: "Bluish-green shade, stable" },
-            { id: "10", name: "Red Iron Oxide", ci: "CI 77491", type: "Inorganic Pigment", sol: "Insoluble", app: "Tablet Coating, Capsules", feat: "Excellent opacity, high stability" },
-            { id: "17", name: "Titanium Dioxide", ci: "CI 77891", type: "Inorganic Pigment", sol: "Insoluble", app: "Coating, Capsules, Syrups", feat: "Opacity, whitening agent, UV protection" }
+            { id: "1", name: "Tartrazine (E102)", ci: "CI 19140", sol: "Water Soluble", app: "Tablets, Capsules, Syrups", feat: "Bright lemon yellow shade" },
+            { id: "2", name: "Sunset Yellow FCF (E110)", ci: "CI 15985", sol: "Water Soluble", app: "Tablets, Nutraceuticals", feat: "Orange-yellow shade" },
+            { id: "3", name: "Quinoline Yellow (E104)", ci: "CI 47005", sol: "Water Soluble", app: "Tablets, Coatings", feat: "Greenish-yellow shade" },
+            { id: "4", name: "Allura Red AC (E129)", ci: "CI 16035", sol: "Water Soluble", app: "Tablets, Capsules", feat: "Bright red shade" },
+            { id: "10", name: "Red Iron Oxide", ci: "CI 77491", sol: "Insoluble", app: "Tablet Coating, Capsules", feat: "Excellent opacity" },
+            { id: "17", name: "Titanium Dioxide", ci: "CI 77891", sol: "Insoluble", app: "Coating, Capsules, Syrups", feat: "Whitening agent & UV protection" }
         ];
 
         // Populate Excipients
         const exGrid = document.getElementById('excipient-grid');
         excipients.forEach(p => {
             exGrid.innerHTML += `
-                <div class="bg-white p-6 rounded-lg border-l-4 border-ex-green shadow-sm card-hover">
-                    <div class="text-xs font-bold text-ex-green mb-1">${p.id}</div>
-                    <h4 class="font-bold text-ex-blue mb-4 h-12 flex items-center uppercase text-sm">${p.name}</h4>
-                    <div class="space-y-2 text-xs">
-                        <p><span class="text-gray-400 font-bold uppercase tracking-tighter">Grade:</span> ${p.grade}</p>
-                        <p><span class="text-gray-400 font-bold uppercase tracking-tighter">App:</span> ${p.app}</p>
-                        <div class="pt-2 border-t mt-2 text-ex-green italic font-semibold">
-                            <i class="fas fa-check-circle mr-1"></i> ${p.feat}
-                        </div>
+                <div class="bg-white p-8 rounded-3xl border-l-8 border-ex-green shadow-sm card-hover">
+                    <div class="text-[10px] font-black text-ex-green mb-2 uppercase tracking-widest">${p.id}</div>
+                    <h4 class="font-black text-ex-blue mb-5 h-12 flex items-center uppercase text-sm leading-tight">${p.name}</h4>
+                    <div class="space-y-3 text-[12px]">
+                        <p><span class="text-gray-400 font-bold uppercase text-[10px]">Usage:</span> ${p.app}</p>
+                        <div class="pt-4 border-t mt-4 text-ex-green italic font-black"><i class="fas fa-check-circle mr-2"></i> ${p.feat}</div>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
 
-        // Populate Colour Details
+        // Populate Colours
         const colGrid = document.getElementById('colour-details-grid');
         colourDetails.forEach(c => {
             colGrid.innerHTML += `
-                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200 card-hover">
-                    <h4 class="font-bold text-ex-blue border-b pb-2 mb-3">${c.name}</h4>
-                    <div class="grid grid-cols-2 gap-2 text-[11px] mb-3">
-                        <div class="bg-slate-50 p-1 px-2 rounded">CI: <span class="font-bold">${c.ci}</span></div>
-                        <div class="bg-slate-50 p-1 px-2 rounded">Sol: <span class="font-bold">${c.sol}</span></div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 card-hover">
+                    <h4 class="font-black text-ex-blue border-b pb-4 mb-5 text-base uppercase tracking-tighter">${c.name}</h4>
+                    <div class="grid grid-cols-2 gap-3 text-[10px] mb-5 uppercase font-black">
+                        <div class="bg-slate-50 p-3 rounded-xl text-slate-500">CI Index: <span class="text-ex-blue block mt-1">${c.ci}</span></div>
+                        <div class="bg-slate-50 p-3 rounded-xl text-slate-500">Sol: <span class="text-ex-blue block mt-1">${c.sol}</span></div>
                     </div>
-                    <div class="space-y-2 text-xs">
-                        <p><span class="text-gray-400 font-bold uppercase">Type:</span> ${c.type}</p>
-                        <p><span class="text-gray-400 font-bold uppercase">Applications:</span> ${c.app}</p>
-                        <p class="text-ex-green font-bold italic leading-tight">${c.feat}</p>
-                    </div>
-                </div>
-            `;
+                    <p class="text-ex-green font-black italic bg-green-50 p-3 rounded-xl border border-green-100 text-sm leading-snug">${c.feat}</p>
+                </div>`;
         });
     </script>
 </body>
